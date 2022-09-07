@@ -48,10 +48,10 @@ def merge_daily_to_time(integrated_Count, integrated_Pivot):
     integrated_Total = integrated_Total.reset_index(drop=True)
     print(integrated_Total)
 
-def attendance_summary():
-    if not os.path.exists(sys.argv[1]):
-        print("Your directory not exist :", sys.argv[1]) # check dir
-    csv_files_list = list(map(lambda x: os.path.join(os.path.abspath(sys.argv[1]), x), os.listdir(sys.argv[1])))  # create list of absolute path of files in dir (arg)
+def attendance_summary(path):
+    if not os.path.exists(path):
+        print("Your directory not exist :",path) # check dir
+    csv_files_list = list(map(lambda x: os.path.join(os.path.abspath(path), x), os.listdir(path)))  # create list of absolute path of files in dir (arg)
     integrated_Table = pd.DataFrame()
 
     for files in csv_files_list:
@@ -68,4 +68,4 @@ def attendance_summary():
 
 #export in csv format to flask frontend? or dataframe will work?
 if __name__ == "__main__":
-    attendance_summary()
+    attendance_summary(sys.argv[1])

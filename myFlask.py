@@ -1,18 +1,16 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, request
 app = Flask(__name__)
 
-@app.route('/Attendance', methods = ['POST', 'GET'])
+@app.route('/Single', methods=['POST', 'GET'])
 
-def Attendance():
-	if request.method == 'POST':
-		date = request.form['ed']
-		return date
+def getDate():
+    if request.method == 'POST':
+        date = request.form['ed']
+        return date # here i need to show the single pivot
 
-app.add_url_rule('/', 'Attendance',Attendance) #add the url to the localhost (http://127.0.0.1:5000/Attendance)
+app.add_url_rule('/', 'Single', getDate) # add the url to the localhost (http://127.0.0.1:5000/Attendance)
 
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True)
 
-
-# the html and the py speaking!!
 # dont forget do test!

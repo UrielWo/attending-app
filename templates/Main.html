@@ -1,10 +1,9 @@
 <html>
    <head>
-   <script src = "{{ url_for('static', filename = 'js/hello.js') }}" ></script>
    <script src = "{{ url_for('static', filename = 'js/showHide.js') }}" ></script>
    </head>
    <body>
-      <p><input type = "button" onclick = "sayHello()" value = "Summary Attendence Report" /></p>
+      <p><button onclick="window.location.href='http://localhost:5000/Integrated_table';"> Summary Attendence Report </button></p>
       <p><input type = "button" onclick = "showHide()" value = "Daily Attendence Report" /></p>
       <form action = "http://localhost:5000/table" method = "post">
          <div id="myDIV" style="display:none">

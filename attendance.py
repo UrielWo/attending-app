@@ -46,7 +46,7 @@ def merge_daily_to_time(integrated_Count, integrated_Pivot):
     integrated_Total = integrated_Total.groupby('Name').agg({'Attendee Email': 'first', 'PtimeOnLesson': 'mean', 'Daily_Att': 'sum'}).reset_index()
     integrated_Total = integrated_Total[integrated_Total['Daily_Att'] > 2]
     integrated_Total = integrated_Total.reset_index(drop=True)
-    print(integrated_Total)
+    return integrated_Total
 
 def attendance_summary(path):
     if not os.path.exists(path):
@@ -64,7 +64,7 @@ def attendance_summary(path):
 
     integrated_Count = Daily_Attendence(integrated_Table)
     integrated_Pivot = integrated_Table_Parse(integrated_Table)
-    merge_daily_to_time(integrated_Count, integrated_Pivot)
+    return merge_daily_to_time(integrated_Count, integrated_Pivot)
 
 #export in csv format to flask frontend? or dataframe will work?
 if __name__ == "__main__":

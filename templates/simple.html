@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/tableDesign.css') }}" >
+</head>
     <body>
+        <div class="s_table">
         {% for table in tables %}
             {{titles[loop.index]}}
             {{ table|safe }}
         {% endfor %}
+        </div>
     </body>
 </html>

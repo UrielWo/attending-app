@@ -18,12 +18,12 @@ def Single_table():
         attendance.private_cases(df)  # Convert Hebrew names to English
         Atten_Duration = (df['Duration'].max())  # get max value of from duration column
         pivot = attendance.single_Pivot_Parse(df, Atten_Duration)
-        return render_template('simple.html',  tables=[pivot.to_html(classes='data')], titles=pivot.columns.values)
+        return render_template('simple.html',  tables=[pivot.to_html(classes='data')], titles="")
 
 @app.route('/Integrated_table')
 def integrated_table():
-    summary_tab = attendance.attendance_summary(path_CSV_files)  # summary tab not working
-    return render_template('summary.html', tables=[summary_tab.to_html(classes='data')], titles=summary_tab.columns.values)
+    summary_tab = attendance.attendance_summary(path_CSV_files)
+    return render_template('summary.html', tables=[summary_tab.to_html(classes='data')], titles="")
 
 if __name__ == '__main__':
     app.run(debug=True)

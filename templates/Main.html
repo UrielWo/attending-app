@@ -1,15 +1,18 @@
 <html>
    <head>
-   <script src = "{{ url_for('static', filename = 'js/showHide.js') }}" ></script>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/mainDesign.css') }}" >
+      <script src = "{{ url_for('static', filename = 'js/showHide.js') }}" ></script>
    </head>
    <body>
-      <p><button onclick="window.location.href='http://localhost:5000/Integrated_table';"> Summary Attendence Report </button></p>
-      <p><input type = "button" onclick = "showHide()" value = "Daily Attendence Report" /></p>
+      <div class="flex" >
+             <button class="intab" onclick="window.location.href='Integrated_table';"> Summary Attendence Report </button>
+             <input type = "button" class="sintab" onclick = "showHide()" value = "Daily Attendence Report" />
+      </div>
       <form action = "http://localhost:5000/table" method = "post">
-         <div id="myDIV" style="display:none">
+         <div class="datebox" id="myDIV" style="display:none">
             <p>Enter Date:</p>
             <p><input type = "text" name = "ed" /></p>
-            <p><input type = "submit" value = "submit" /></p>
+            <p><input class="sumb" type = "submit" value = "submit" /></p>
          </div>
       </form>
    </body>

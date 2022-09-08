@@ -1,0 +1,27 @@
+body {
+  background-color: lightblue;
+}
+.data {
+  font-family: "JetBrains Mono",monospace;
+  background: #FCFCFD;
+  border-collapse: separate;
+  border-color: blue gold;
+  width: 80%;
+  height: 100%;
+  padding: 20px;
+  border: 10px solid lightblue;
+}
+
+.data th {
+  background: #FCFCFD;
+  text-align: center;
+  border-collapse: separate;
+  border: 2px solid lightblue;
+}
+
+.s_table {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

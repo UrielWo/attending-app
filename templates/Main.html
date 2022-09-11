@@ -2,17 +2,18 @@
    <head>
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/mainDesign.css') }}" >
       <script src = "{{ url_for('static', filename = 'js/showHide.js') }}" ></script>
+      <script src = "{{ url_for('static', filename = 'js/checkDate.js') }}" ></script>
    </head>
    <body>
       <div class="flex" >
              <button class="intab" onclick="window.location.href='Integrated_table';"> Summary Attendence Report </button>
              <input type = "button" class="sintab" onclick = "showHide()" value = "Daily Attendence Report" />
       </div>
-      <form action = "http://localhost:5000/table" method = "post">
+      <form action = "http://localhost:5000/table" method = "post" onsubmit="checkSubmit()">
          <div class="datebox" id="myDIV" style="display:none">
             <p>Enter Date:</p>
             <p><input type = "text" name = "ed" /></p>
-            <p><input class="sumb" type = "submit" value = "submit" /></p>
+            <p><input class="sumb" type = "submit" value="submit" /></p>
          </div>
       </form>
    </body>

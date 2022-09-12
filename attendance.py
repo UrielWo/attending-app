@@ -8,42 +8,42 @@ def private_cases(df):  # Convert Hebrew names to English
     df.loc[df['Name'] == 'אורן גדמו', 'Name'] = 'Oren Gedamu'
     df.loc[df['Name'] == 'מירב חורש', 'Name'] = 'Meirav Horesh'
     df.loc[df['Name'] == 'יוסי בנגייב', 'Name'] = 'Yossi Bengaev'
-    df.loc[df['Attendee Email'] == 'estherwa@gmai.com', 'Attendee Email'] = 'estherwa@hotmail.es'
-    df.loc[df['Attendee Email'] == 'estherwa@gmail.com', 'Attendee Email'] = 'estherwa@hotmail.es'
-    df.loc[df['Attendee Email'] == 'estherwah9@gmail.com', 'Attendee Email'] = 'estherwa@hotmail.es'
+    df.loc[df['Attendee_Email'] == 'estherwa@gmai.com', 'Attendee_Email'] = 'estherwa@hotmail.es'
+    df.loc[df['Attendee_Email'] == 'estherwa@gmail.com', 'Attendee_Email'] = 'estherwa@hotmail.es'
+    df.loc[df['Attendee_Email'] == 'estherwah9@gmail.com', 'Attendee_Email'] = 'estherwa@hotmail.es'
 
 def duration_Col(df):  # split Attendance Duration to use min as int for calculations
-    df[['Duration', 'Time_unit']] = df['Attendance Duration'].str.split(' ', expand=True)
+    df[['Duration', 'Time_unit']] = df['Attendance_Duration'].str.split(' ', expand=True) # i change for the database adding _ to column name
     df['Duration'] = df['Duration'].astype(int)  # convert column string to int
 
 def single_Pivot_Parse(df,Atten_Duration):
-    pivot = pd.pivot_table(df, index=['Attendee Email', 'Name'], values='Duration', aggfunc='sum').reset_index()  # create pivot table
+    pivot = pd.pivot_table(df, index=['Attendee_Email', 'Name'], values='Duration', aggfunc='sum').reset_index()  # create pivot table
     pivot = pivot.assign(PtimeOnLesson=lambda x: round(x['Duration'] / Atten_Duration * 100))  # calculate percent of attendence
-    pivot = pivot.groupby('Attendee Email').agg({'Name': 'first', 'PtimeOnLesson': 'sum'}).reset_index()  # group by same email
-    pivot = pivot.groupby('Name').agg({'Attendee Email': 'first', 'PtimeOnLesson': 'sum'}).reset_index()  # group by same names
+    pivot = pivot.groupby('Attendee_Email').agg({'Name': 'first', 'PtimeOnLesson': 'sum'}).reset_index()  # group by same email
+    pivot = pivot.groupby('Name').agg({'Attendee_Email': 'first', 'PtimeOnLesson': 'sum'}).reset_index()  # group by same names
 
     pivot.loc[pivot['PtimeOnLesson'] > 100, 'PtimeOnLesson'] = pivot['PtimeOnLesson'] / 2
     return pivot
 
 def integrated_Table_Parse(integrated_Table):
-    integrated_Pivot = pd.pivot_table(integrated_Table, index=['Attendee Email', 'Name'], values='PtimeOnLesson').reset_index()
-    integrated_Pivot = integrated_Pivot.groupby('Attendee Email').agg({'Name': 'first', 'PtimeOnLesson': 'mean'}).reset_index()  # group by same email
-    integrated_Pivot = integrated_Pivot.groupby('Name').agg({'Attendee Email': 'first', 'PtimeOnLesson': 'mean'}).reset_index()  # group by same names
+    integrated_Pivot = pd.pivot_table(integrated_Table, index=['Attendee_Email', 'Name'], values='PtimeOnLesson').reset_index()
+    integrated_Pivot = integrated_Pivot.groupby('Attendee_Email').agg({'Name': 'first', 'PtimeOnLesson': 'mean'}).reset_index()  # group by same email
+    integrated_Pivot = integrated_Pivot.groupby('Name').agg({'Attendee_Email': 'first', 'PtimeOnLesson': 'mean'}).reset_index()  # group by same names
     integrated_Pivot['PtimeOnLesson'] = round(integrated_Pivot['PtimeOnLesson'])
     integrated_Pivot = integrated_Pivot.sort_values(by='PtimeOnLesson', ascending=False)  # sort by time on lesson
     # integrated_Pivot['PtimeOnLesson'] = integrated_Pivot['PtimeOnLesson'].astype(str) + '%' # add % to percent
     return integrated_Pivot
 
 def Daily_Attendence(integrated_Table):  # check by name attendence per lesson
-    Daily_Att = integrated_Table.value_counts(subset='Attendee Email').reset_index()
+    Daily_Att = integrated_Table.value_counts(subset='Attendee_Email').reset_index()
     Daily_Att = Daily_Att.rename(columns = {0:'Daily_Att'})
     return (Daily_Att)
 
 def merge_daily_to_time(integrated_Count, integrated_Pivot):
     integrated_Total = pd.concat([integrated_Count, integrated_Pivot], axis=0,ignore_index=False)  # concat daily with integrated
-    integrated_Total = integrated_Total.groupby('Attendee Email').agg({'Name': 'last', 'PtimeOnLesson': 'mean', 'Daily_Att': 'sum'}).reset_index()
+    integrated_Total = integrated_Total.groupby('Attendee_Email').agg({'Name': 'last', 'PtimeOnLesson': 'mean', 'Daily_Att': 'sum'}).reset_index()
     integrated_Total['Name'] = integrated_Total['Name'].str.lower()
-    integrated_Total = integrated_Total.groupby('Name').agg({'Attendee Email': 'first', 'PtimeOnLesson': 'mean', 'Daily_Att': 'sum'}).reset_index()
+    integrated_Total = integrated_Total.groupby('Name').agg({'Attendee_Email': 'first', 'PtimeOnLesson': 'mean', 'Daily_Att': 'sum'}).reset_index()
     integrated_Total = integrated_Total[integrated_Total['Daily_Att'] > 2]
     integrated_Total = integrated_Total.reset_index(drop=True)
     return integrated_Total

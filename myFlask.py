@@ -31,8 +31,11 @@ def data_table():
         df = pd.DataFrame(columns=['Meeting_Name', 'Meeting_Start_Time', 'Meeting_End_Time', 'Name', 'Attendee_Email', 'Join_Time', 'Leave_Time', 'Attendance_Duration', 'Connection_Type'])
         for row in records:
             df.loc[len(df)] = row
-        #attendance.duration_Col(df)  # split Attendance Duration to use min as int for calculations
-        return render_template('simple.html',  tables=[df.to_html(classes='data')], titles="")
+        attendance.duration_Col(df)  # split Attendance Duration to use min as int for calculations
+        attendance.private_cases(df)  # Convert Hebrew names to English
+        Atten_Duration = (df['Duration'].max())  # get max value of from duration column
+        pivot = attendance.single_Pivot_Parse(df, Atten_Duration)
+        return render_template('simple.html',  tables=[pivot.to_html(classes='data')], titles="")
         client.close()
 
 

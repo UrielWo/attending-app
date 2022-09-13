@@ -24,8 +24,8 @@ mycursor.execute("USE course_Attendance;")
 
 @app.route('/Main')
 def main():
-    mycursor.execute("SELECT DISTINCT mid(SUBSTRING_INDEX(Meeting_Start_Time,' ',1),3) FROM attendance_data2 WHERE mid(SUBSTRING_INDEX(Meeting_Start_Time,' ',1),3);")
-    dates = mycursor.fetchall() #check how to send the list to drop list in html
+    #mycursor.execute("SELECT DISTINCT mid(SUBSTRING_INDEX(Meeting_Start_Time,' ',1),3) FROM attendance_data2 WHERE mid(SUBSTRING_INDEX(Meeting_Start_Time,' ',1),3);")
+    #dates = mycursor.fetchall() #check how to send the dates to droplist in html
    return render_template("Main.html")
 @app.route('/Database_table', methods=("POST", "GET"))
 def data_table():

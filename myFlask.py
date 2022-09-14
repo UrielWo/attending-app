@@ -25,8 +25,8 @@ mycursor.execute("USE course_Attendance;")
 @app.route('/Main')
 def main():
     #mycursor.execute("SELECT DISTINCT mid(SUBSTRING_INDEX(Meeting_Start_Time,' ',1),3) FROM attendance_data2 WHERE mid(SUBSTRING_INDEX(Meeting_Start_Time,' ',1),3);")
-    #dates = mycursor.fetchall() #check how to send the dates to droplist in html
-   return render_template("Main.html")
+    #dates = mycursor.fetchall() # check how to send the dates to droplist in html
+    return render_template("Main.html")
 @app.route('/Database_table', methods=("POST", "GET"))
 def data_table():
     if request.method == 'POST':
@@ -105,20 +105,7 @@ def integrated_table():                      #version 2
         res = int(a_string)
         Atten_Duration.update({dates: res})
     return (Atten_Duration)
-
-
-    integrated_Count = attendance.Daily_Attendence(df)
-    attendance.duration_Col(df)
-    #Atten_Duration = (df['Duration'].max())# not true
-    #f = df.assign(Time_On_Lesson=lambda x: round(x['Duration'] / Atten_Duration * 100))  # calculate percent of attendence
-    integrated_Pivot = attendance.integrated_Table_Parse(df)
-    merge_T = attendance.merge_daily_to_time(integrated_Count, integrated_Pivot)
-    return render_template('summary.html', tables=[merge_T.to_html(classes='data')], titles="")"""
-
-"""@app.route('/Integrated_table')
-def integrated_table():
-    summary_tab = attendance.attendance_summary(path_CSV_files)
-    return render_template('summary.html', tables=[summary_tab.to_html(classes='data')], titles="")"""
+"""
 
 if __name__ == '__main__':
     app.run(debug=True)

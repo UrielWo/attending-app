@@ -3,7 +3,6 @@ import attendance
 import paramiko
 import mysql.connector
 import pandas as pd
-from itertools import chain
 
 app = Flask(__name__)
 # connecting to remote database

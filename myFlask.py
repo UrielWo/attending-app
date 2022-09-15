@@ -1,18 +1,18 @@
 from flask import Flask, request, render_template
 import attendance
-import paramiko
+#import paramiko
 import mysql.connector
 import pandas as pd
 
 app = Flask(__name__)
 # connecting to remote database
 
-host = "192.168.56.101"
+"""host = "192.168.56.101"
 username = "uriel"
 password = "aceituna1"
 client = paramiko.client.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-client.connect(host, username=username, password=password)
+client.connect(host, username=username, password=password)"""
 mydb = mysql.connector.connect(
     host="192.168.56.101",
     user="urielw",

@@ -14,10 +14,10 @@ def table_create():
 	    sftp.cwd('/var/tmp/csv_files/')
 	    directory_structure = sftp.listdir_attr()
 	    for attr in directory_structure:
-		fileName = attr.filename
-		remoteFilePath = '/var/tmp/csv_files/{}'.format(fileName)
-		localFilePath = '/home/uriel/course/csv_files/{}'.format(fileName)
-		sftp.get(remoteFilePath, localFilePath)
+	    	fileName = attr.filename
+	    	remoteFilePath = '/var/tmp/csv_files/{}'.format(fileName)
+	    	localFilePath = '/home/uriel/course/csv_files/{}'.format(fileName)
+	    	sftp.get(remoteFilePath, localFilePath)
 
 	mydb = mysql.connector.connect(host="127.0.0.1", user="uriel",password="password", database="attendance")
 	mycursor = mydb.cursor()
@@ -34,11 +34,10 @@ def table_create():
 	for files in csv_files_list:
 	    df = pd.read_csv(files, encoding="UTF-16LE", sep="\t")
 	    df = df.where((pd.notnull(df)), None)
-	    for i, row in df.iterrows():
-		# here %S means string values
-		sql = "INSERT INTO attendance.attendance_data (Meeting_Name, Meeting_Start_Time, Meeting_End_Time, Name,Attendee_Email,Join_Time,Leave_Time,Attendance_Duration, Connection_Type) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-		mycursor.execute(sql, tuple(row))
-		mydb.commit()
+	    for i, row in df.iterrows():# here %S means string values
+	    	sql = "INSERT INTO attendance.attendance_data (Meeting_Name, Meeting_Start_Time, Meeting_End_Time, Name,Attendee_Email,Join_Time,Leave_Time,Attendance_Duration, Connection_Type) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+	    	mycursor.execute(sql, tuple(row))
+	    	mydb.commit()
 	print("table created")
 
 if __name__ == '__main__':

@@ -4,16 +4,20 @@ import attendance
 import mysql.connector
 import pandas as pd
 from table_create import table_create
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 
-#table_create()
+#table_create() # make a flag for this function
 
-mydb = mysql.connector.connect(host="127.0.0.1", user="uriel",password="password", database="attendance")
+mydb = mysql.connector.connect(host="127.0.0.1", user=os.getenv("DB_USER") ,password=os.getenv("DB_PASSWORD"), database="attendance")
 mycursor = mydb.cursor()
 mycursor.execute("select database();")
 record = mycursor.fetchone()
-print("You're connected to database: ", record)
+print("You're connected to database in flask: ", record)
 mycursor.execute("USE attendance;")
 
 @app.route('/Main')

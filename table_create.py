@@ -2,14 +2,16 @@ import mysql.connector
 import pandas as pd
 import os
 import pysftp
-import paramiko
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def table_create():
 	path = "/home/uriel/course/csv_files"
 
 	cnopts = pysftp.CnOpts()
 	cnopts.hostkeys = None 
-	with pysftp.Connection('185.164.16.144', username='urielw', password='banana234', cnopts=cnopts) as sftp:
+	with pysftp.Connection('185.164.16.144', username=os.getenv("RVM_USER"), password=os.getenv("RVM_PASSWORD"), cnopts=cnopts) as sftp:
 	    print ("connection succesfully")
 	    sftp.cwd('/var/tmp/csv_files/')
 	    directory_structure = sftp.listdir_attr()
@@ -19,7 +21,7 @@ def table_create():
 	    	localFilePath = '/home/uriel/course/csv_files/{}'.format(fileName)
 	    	sftp.get(remoteFilePath, localFilePath)
 
-	mydb = mysql.connector.connect(host="127.0.0.1", user="uriel",password="password", database="attendance")
+	mydb = mysql.connector.connect(host="127.0.0.1", user=os.getenv("DB_USER"),password=os.getenv("DB_PASSWORD"), database="attendance")
 	mycursor = mydb.cursor()
 	mycursor.execute("select database();")
 	record = mycursor.fetchone()

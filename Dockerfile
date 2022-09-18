@@ -2,16 +2,12 @@
 
 FROM python:3.10-slim-buster
 
-#RUN apk add --no-cache gcc musl-dev linux-headers
+WORKDIR /app 
 
-COPY ./requirements.txt /app/requirements.txt
-
-WORKDIR /app
+COPY ./requirements.txt requirements.txt
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT [ "python" ]
-
-CMD [ "python3", "flask", "run" ]
+CMD [ "python3", "myFlask.py"]

@@ -7,21 +7,21 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def table_create():
-	path = "/home/uriel/course/csv_files"
+	path = "/tmp"
 
 	cnopts = pysftp.CnOpts()
 	cnopts.hostkeys = None 
-	with pysftp.Connection('185.164.16.144', username=os.getenv("RVM_USER"), password=os.getenv("RVM_PASSWORD"), cnopts=cnopts) as sftp:
+	with pysftp.Connection(os.getenv("RVM_IP"), username=os.getenv("RVM_USER"), password=os.getenv("RVM_PASSWORD"), cnopts=cnopts) as sftp:
 	    print ("connection succesfully")
 	    sftp.cwd('/var/tmp/csv_files/')
 	    directory_structure = sftp.listdir_attr()
 	    for attr in directory_structure:
 	    	fileName = attr.filename
 	    	remoteFilePath = '/var/tmp/csv_files/{}'.format(fileName)
-	    	localFilePath = '/home/uriel/course/csv_files/{}'.format(fileName)
+	    	localFilePath = '/tmp/{}'.format(fileName)
 	    	sftp.get(remoteFilePath, localFilePath)
 
-	mydb = mysql.connector.connect(host="127.0.0.1", user=os.getenv("DB_USER"),password=os.getenv("DB_PASSWORD"), database="attendance")
+	mydb = mysql.connector.connect(host=os.getenv("MYSQL_HOST"), user=os.getenv("DB_USER"),password=os.getenv("DB_PASSWORD"), database=os.getenv("MYSQL_DB"))
 	mycursor = mydb.cursor()
 	mycursor.execute("select database();")
 	record = mycursor.fetchone()

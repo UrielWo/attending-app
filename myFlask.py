@@ -11,9 +11,9 @@ load_dotenv()
 
 app = Flask(__name__)
 
-#table_create() # make a flag for this function
+table_create() 
 
-mydb = mysql.connector.connect(host="127.0.0.1", user=os.getenv("DB_USER") ,password=os.getenv("DB_PASSWORD"), database="attendance")
+mydb = mysql.connector.connect(host=os.getenv("MYSQL_HOST"), user=os.getenv("DB_USER") ,password=os.getenv("DB_PASSWORD"), database=os.getenv("MYSQL_DB"))
 mycursor = mydb.cursor()
 mycursor.execute("select database();")
 record = mycursor.fetchone()
@@ -64,11 +64,13 @@ def integrated_table():
     integrated_Count = attendance.Daily_Attendence(integrated_Table)
     integrated_Pivot = attendance.integrated_Table_Parse(integrated_Table)
     final_Table = attendance.merge_daily_to_time(integrated_Count, integrated_Pivot)
+    final_Table = final_Table.astype(str).replace(r'\.0$', '', regex=True)
+    final_Table['Time_On_Lesson'] = final_Table['Time_On_Lesson'].astype(str) + '%'  # add % to percent
     return render_template('summary.html', tables=[final_Table.to_html(classes='data')], titles="")
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
 
 #mycursor.execute("SELECT DISTINCT mid(SUBSTRING_INDEX(Meeting_Start_Time,' ',1),3) FROM attendance_data2 WHERE mid(SUBSTRING_INDEX(Meeting_Start_Time,' ',1),3);")
 #dates = mycursor.fetchall() # check how to send the dates to droplist in html

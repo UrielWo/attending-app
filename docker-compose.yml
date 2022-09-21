@@ -2,7 +2,8 @@ version: "3.8"
 
 services:
    app:
-     image: attendance:latest
+     image: urielwo/attendance:latest
+     build: ./attendance.py
      ports: 
          - '8081:5000'
      working_dir: /app
@@ -21,9 +22,10 @@ services:
         MYSQL_PASSWORD: password
         MYSQL_ROOT_PASSWORD: password
      ports:
-        - '3308:3306' # enter from linux
+        - '3307:3306' # enter from linux
      volumes: 
        - /etc/mysql/mysql.conf.d/:/etc/mysql/mysql.conf.d/
+       - /home/uriel/course/csv_files:/home/uriel/course/csv_files
 
 networks:
   default:

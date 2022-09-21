@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def table_create():
-	path = "/tmp"
-
+	path = "/home/uriel/course/csv_files"
+"""
 	cnopts = pysftp.CnOpts()
 	cnopts.hostkeys = None 
 	with pysftp.Connection(os.getenv("RVM_IP"), username=os.getenv("RVM_USER"), password=os.getenv("RVM_PASSWORD"), cnopts=cnopts) as sftp:
@@ -20,7 +20,7 @@ def table_create():
 	    	remoteFilePath = '/var/tmp/csv_files/{}'.format(fileName)
 	    	localFilePath = '/tmp/{}'.format(fileName)
 	    	sftp.get(remoteFilePath, localFilePath)
-
+"""
 	mydb = mysql.connector.connect(host=os.getenv("MYSQL_HOST"), user=os.getenv("DB_USER"),password=os.getenv("DB_PASSWORD"), database=os.getenv("MYSQL_DB"))
 	mycursor = mydb.cursor()
 	mycursor.execute("select database();")

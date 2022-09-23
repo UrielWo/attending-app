@@ -11,7 +11,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-table_create() 
+#table_create() 
 
 mydb = mysql.connector.connect(host=os.getenv("MYSQL_HOST"), user=os.getenv("DB_USER") ,password=os.getenv("DB_PASSWORD"), database=os.getenv("MYSQL_DB"))
 mycursor = mydb.cursor()

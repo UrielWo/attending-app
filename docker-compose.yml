@@ -3,6 +3,8 @@ version: "3.8"
 services:
    app:
      image: attendance:latest
+     build:
+       context: ./
      ports: 
          - '8081:5000'
      working_dir: /app

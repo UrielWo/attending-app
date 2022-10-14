@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def table_create():
-	path = "/tmp"
+	path = "/app/csv"
 
 	cnopts = pysftp.CnOpts()
 	cnopts.hostkeys = None 

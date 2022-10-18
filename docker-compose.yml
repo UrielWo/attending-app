@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+   app:
+     image: attendance:latest
+     build:
+       context: ./
+     ports: 
+         - '8081:5000'
+     working_dir: /app
+     environment:
+        MYSQL_HOST: mysql 
+        MYSQL_DB: attendance
+        MYSQL_USER: uriel
+        MYSQL_PASSWORD: password
+     command: python3 myFlask.py
+   
+   mysql:
+     image: mysql:latest
+     environment:
+        MYSQL_DATABASE: attendance
+        MYSQL_USER: uriel
+        MYSQL_PASSWORD: password
+        MYSQL_ROOT_PASSWORD: password
+     ports:
+        - '3308:3306' # enter from linux
+     volumes: 
+       - /etc/mysql/mysql.conf.d/:/etc/mysql/mysql.conf.d/
+
+networks:
+  default:
+    external: false
+    name: net
+        
+

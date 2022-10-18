@@ -3,10 +3,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-               bash build_Script.sh
+               sh './build_Script.sh'
             }
         }
-      stage('test') {
+      """ stage('test') {
             steps {
                 echo 'some tesdting'
             }
@@ -27,6 +27,6 @@ pipeline {
         failure {
             echo 'Build stage failed'
             error('Stopping early…')
-        }
+        } """
       }
 }

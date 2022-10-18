@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
+               chmod 777 build_Script.sh
                sh './build_Script.sh'
             }
         }

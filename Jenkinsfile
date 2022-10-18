@@ -6,7 +6,7 @@ pipeline {
                sh './build_Script.sh'
             }
         }
-      """ stage('test') {
+      stage('test') {
             steps {
                 echo 'some tesdting'
             }
@@ -27,6 +27,6 @@ pipeline {
         failure {
             echo 'Build stage failed'
             error('Stopping early…')
-        } """
+        } 
       }
 }

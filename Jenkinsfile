@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-               sh './home/uriel/branch/Course-Project/build_Script.sh'
+               echo 'some'
             }
         }
       stage('test') {

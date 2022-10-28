@@ -4,7 +4,6 @@ pipeline {
         stage('build') {
             steps {
               sh '''
-                docker compose version
                 docker version
                 curl --version
               '''

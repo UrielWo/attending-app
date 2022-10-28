@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-               echo 'some'
+               echo 'something'
                sh 'cat Dockerfile'
             }
         }

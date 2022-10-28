@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-               echo 'something'
-               sh 'cat Dockerfile'
+               sh 'docker-compose up -d'
             }
         }
       stage('test') {

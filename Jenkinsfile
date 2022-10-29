@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
+        stage('builds') {
             steps {
               sh '''
                 docker version

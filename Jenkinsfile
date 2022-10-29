@@ -4,7 +4,7 @@ pipeline {
         stage('builds') {
             steps {
               sh '''
-                docker-compose version
+                docker-compose up
               '''
             }
         }

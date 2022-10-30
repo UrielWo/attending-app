@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    enviroment {
+    environment {
         RVM_USER = credentials('RVM_USER')
         RVM_PASSWORD = credentials('RVM_PASSWORD')
         RVM_IP = credentials('RVM_PASSWORD')

@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    environment {
+    /*environment {
         RVM_USER = credentials('RVM_USER')
         RVM_PASSWORD = credentials('RVM_PASSWORD')
         RVM_IP = credentials('RVM_PASSWORD')
@@ -10,7 +10,8 @@ pipeline {
         MYSQL_DB = credentials('MYSQL_DB')
         MYSQL_USER = credentials('MYSQL_USER')
         MYSQL_PASSWORD = credentials('MYSQL_PASSWORD')
-    }
+    }*/
+    withCredentials([file(credentialsId: '.env', variable: '')]) {
     stages {
         stage('builds') {
             steps {
@@ -42,4 +43,5 @@ pipeline {
             error('Stopping early…')
         }
       }
+    }
 }

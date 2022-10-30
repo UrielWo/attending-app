@@ -1,5 +1,16 @@
 pipeline {
     agent any
+    enviroment {
+        RVM_USER = credentials('RVM_USER')
+        RVM_PASSWORD = credentials('RVM_PASSWORD')
+        RVM_IP = credentials('RVM_PASSWORD')
+        DB_USER = credentials('DB_USER')
+        DB_PASSWORD = credentials('DB_PASSWORD')
+        MYSQL_HOST = credentials('MYSQL_HOST')
+        MYSQL_DB = credentials('MYSQL_DB')
+        MYSQL_USER = credentials('MYSQL_USER')
+        MYSQL_PASSWORD = credentials('MYSQL_PASSWORD')
+    }
     stages {
         stage('builds') {
             steps {

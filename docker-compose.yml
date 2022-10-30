@@ -9,19 +9,21 @@ services:
          - '8081:5000'
      working_dir: /app
      environment:
-        MYSQL_HOST: mysql 
-        MYSQL_DB: attendance
-        MYSQL_USER: uriel
-        MYSQL_PASSWORD: password
+        MYSQL_HOST: ${MYSQL_HOST}
+        MYSQL_DB: ${MYSQL_DB} 
+        MYSQL_USER: ${MYSQL_USER} 
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD} 
+     #volumes: 
+     #  - ~/branch/Course-project:/app/
      command: python3 myFlask.py
    
    mysql:
      image: mysql:latest
      environment:
-        MYSQL_DATABASE: attendance
-        MYSQL_USER: uriel
-        MYSQL_PASSWORD: password
-        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: ${MYSQL_DB}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
      ports:
         - '3308:3306' # enter from linux
      volumes: 

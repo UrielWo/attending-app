@@ -10,6 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-#RUN ./.env
+RUN ./.env
 
 ENTRYPOINT ["python3", "myFlask.py"]	

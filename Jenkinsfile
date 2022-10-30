@@ -11,8 +11,7 @@ pipeline {
         MYSQL_USER = credentials('MYSQL_USER')
         MYSQL_PASSWORD = credentials('MYSQL_PASSWORD')
     }*/
-    withCredentials([file(credentialsId: '.env', variable: '')]) {
-    stages {
+    stages { withCredentials([file(credentialsId: '.env', variable: '')]) {
         stage('builds') {
             steps {
               sh '''

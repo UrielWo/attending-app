@@ -11,7 +11,7 @@ pipeline {
         MYSQL_USER = credentials('MYSQL_USER')
         MYSQL_PASSWORD = credentials('MYSQL_PASSWORD')
     }*/
-    stages { withCredentials([file(credentialsId: '.env', variable: '')]) {
+    stages {
         stage('builds') {
             steps {
               sh '''
@@ -42,5 +42,4 @@ pipeline {
             error('Stopping early…')
         }
       }
-    }
 }

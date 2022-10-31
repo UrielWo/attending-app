@@ -21,7 +21,7 @@ pipeline {
                 docker images
                 docker-compose up -d --no-color --wait
                 docker ps
-                docker-compose down --remove-orphans -v
+                //docker-compose down --remove-orphans -v
               '''
             }
         }

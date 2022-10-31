@@ -15,7 +15,7 @@ pipeline {
         stage('builds') {
             steps {
               sh '''
-                Docker system prune -a --volumes -f
+                docker system prune -a --volumes -f
                 docker-compose up -d --no-color --wait
                 docker ps                
               '''

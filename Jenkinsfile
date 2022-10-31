@@ -16,6 +16,7 @@ pipeline {
             steps {
               sh '''
                 docker-compose version
+                cat .env
               '''
             }
         }

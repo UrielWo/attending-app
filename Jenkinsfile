@@ -16,11 +16,12 @@ pipeline {
             steps {
               sh '''
                 echo 'build started'
-                docker system prune -a --volumes -f
                 docker build .
                 docker images
-                docker-compose up -d --no-color --wait
-                docker ps
+                git add .
+                git commit -m "1"
+                git push 
+                docker system prune -a --volumes -f
               '''
             }
         }

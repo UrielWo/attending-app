@@ -18,9 +18,6 @@ pipeline {
                 echo 'build started'
                 docker build .
                 docker images
-                git add .
-                git commit -m "1"
-                git push 
                 docker system prune -a --volumes -f
               '''
             }

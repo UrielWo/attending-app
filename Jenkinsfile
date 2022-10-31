@@ -17,7 +17,8 @@ pipeline {
               sh '''
                 docker system prune -a --volumes -f
                 docker-compose up -d --no-color --wait
-                docker ps                
+                docker ps
+                docker-compose down --remove-orphans -v
               '''
             }
         }

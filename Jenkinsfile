@@ -15,6 +15,7 @@ pipeline {
         stage('builds') {
             steps {
               sh '''
+                echo 'build started'
                 docker system prune -a --volumes -f
                 docker-compose up -d --no-color --wait
                 docker ps

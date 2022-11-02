@@ -12,18 +12,6 @@ if [[ -n "$1" ]] ; then
         sudo scp docker-compose.yml .env ec2-user@test:/home/ec2-user/Project_test
         sudo ssh -tt ec2-user@test " cd "$DIR" && bash tests.sh && exit "
         echo finish tests successfully
-        ' :
-        not working
-        if [ -d "$DIR" ]; then
-             echo Directory "$DIR" exists.
-             # pull image from docker hub / make it manually first on machine
-             # docker compose up
-             # run tests
-        else
-             echo Directory "$DIR" not exists.
-             exit 2 
-        fi
-        '
    elif [ "$arg1" = "prod" ]; then
        echo product
    else

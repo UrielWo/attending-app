@@ -10,8 +10,7 @@ if [[ -n "$1" ]] ; then
         echo testing;
         # copy files to test server / need to add tests file
         sudo scp docker-compose.yml .env ec2-user@test:/home/ec2-user/Project_test
-        sudo ssh -tt ec2-user@test
-        exit
+        sudo ssh ec2-user@test ** exit **
         echo finish tests successfully
         ' not working
         if [ -d "$DIR" ]; then

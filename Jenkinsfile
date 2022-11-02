@@ -13,12 +13,12 @@ pipeline {
         }
       stage('test') {
             steps {
-                sh 'deploy.sh test'
+                sh 'bash deploy.sh test'
             }
         }
       stage('deploy') {
             steps {
-                sh 'deploy.sh prod'
+                sh 'bash deploy.sh prod'
             }
         }
     }

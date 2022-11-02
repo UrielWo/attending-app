@@ -2,7 +2,7 @@
 
 arg1="$1"
 arg2="$2"
-# DIR="XXXXXXX"
+DIR="/home/ec2-user/Project_test"
 
 if [[ -n "$1" ]] ; then
    if [ "$arg1" = "test" ]; then
@@ -10,8 +10,6 @@ if [[ -n "$1" ]] ; then
         # copy files to test server / need to add tests file
         sudo scp docker-compose.yml .env ec2-user@test:/home/ec2-user/Project_test
         sudo ssh ec2-user@test
-        exit
-        : '
         if [ -d "$DIR" ]; then
              echo Directory "$DIR" exists.
              # pull image from docker hub
@@ -20,7 +18,7 @@ if [[ -n "$1" ]] ; then
         else
              echo Directory "$DIR" not exists.
         fi
-       '
+        exit
    elif [ "$arg1" = "prod" ]; then
        echo product
    else

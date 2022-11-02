@@ -10,11 +10,7 @@ if [[ -n "$1" ]] ; then
         echo testing;
         # copy files to test server / need to add tests file
         sudo scp docker-compose.yml .env ec2-user@test:/home/ec2-user/Project_test
-        sudo ssh -tt ec2-user@test " date && exit "
-        echo finish tests successfully
-        ip -4 a
-        ' :
-        not working
+        sudo ssh -tt ec2-user@test "
         if [ -d "$DIR" ]; then
              echo Directory "$DIR" exists.
              # pull image from docker hub / make it manually first on machine
@@ -24,6 +20,9 @@ if [[ -n "$1" ]] ; then
              echo Directory "$DIR" not exists.
              exit 2 
         fi
+        && exit "
+        echo finish tests successfully
+        
         '
    elif [ "$arg1" = "prod" ]; then
        echo product

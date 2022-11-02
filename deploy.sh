@@ -2,16 +2,14 @@
 
 arg1="$1"
 arg2="$2"
-DIR="XXXXXXX"
+# DIR="XXXXXXX"
 
 if [[ -n "$1" ]] ; then
    if [ "$arg1" = "test" ]; then
         echo testing;
-        # copy files to test server
-        sudo scp docker-compose.yml .env tests ec2-user@test:/home/ec2-user/Project_test
+        # copy files to test server / need to add tests file
+        sudo scp docker-compose.yml .env ec2-user@test:/home/ec2-user/Project_test
         sudo ssh ec2-user@test
-        
-        # comment
         : '
         if [ -d "$DIR" ]; then
              echo Directory "$DIR" exists.

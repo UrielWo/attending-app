@@ -10,6 +10,7 @@ if [[ -n "$1" ]] ; then
         # copy files to test server / need to add tests file
         sudo scp docker-compose.yml .env ec2-user@test:/home/ec2-user/Project_test
         sudo ssh ec2-user@test
+        exit
         : '
         if [ -d "$DIR" ]; then
              echo Directory "$DIR" exists.

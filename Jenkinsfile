@@ -5,7 +5,7 @@ pipeline {
             steps {
               sh '''
                 echo 'build started'
-                docker build --tag Final_Image .
+                docker build --tag final_image .
                 docker images
                 docker system prune -a --volumes -f
               '''

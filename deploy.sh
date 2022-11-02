@@ -22,8 +22,6 @@ if [[ -n "$1" ]] ; then
         fi
         && exit "
         echo finish tests successfully
-        
-        '
    elif [ "$arg1" = "prod" ]; then
        echo product
    else

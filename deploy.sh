@@ -8,7 +8,7 @@ if [[ -n "$1" ]] ; then
    if [ "$arg1" = "test" ]; then
         echo testing;
         # copy files to test server / need to add tests file
-        sudo scp docker-compose.yml .env ec2-user@test:/home/ec2-user/Project_test
+        sudo scp docker-compose.yml .env tests.sh ec2-user@test:/home/ec2-user/Project_test
         sudo ssh -tt ec2-user@test " cd "$DIR" && bash tests.sh && exit "
         echo finish tests successfully
    elif [ "$arg1" = "prod" ]; then

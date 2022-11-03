@@ -2,7 +2,8 @@
 DIR="/home/ec2-user/Project_test/"
 if [ -d "$DIR" ]; then
     echo Directory "$DIR" exists.
-    # pull image from docker hub / make it manually first on machine
+    docker pull urielwo/final_project:latest
+    docker images
     # docker compose up
     # run tests
 else

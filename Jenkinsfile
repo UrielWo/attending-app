@@ -7,9 +7,9 @@ pipeline {
                 echo 'build started'
                 docker build --tag urielwo/final_project .
                 docker images
+                docker push urielwo/final_project:latest
+                docker system prune -a --volumes -f
               '''
-              //docker system prune -a --volumes -f
-              // push image to docker hub before prune
             }
         }
       stage('test') {

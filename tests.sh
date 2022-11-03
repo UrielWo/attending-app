@@ -10,7 +10,7 @@ if [ -d "$DIR" ]; then
     export $(cat .env | xargs)
     # test 1
     if curl -I "http://"${TESTVM_PUB_IP}":8081/Main" 2>&1 | grep -w "200\|301" ; then
-        echo "page is up"
+        echo "page is working"
     else
         echo "page is down"
     fi

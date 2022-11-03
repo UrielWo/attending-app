@@ -5,6 +5,7 @@ if [ -d "$DIR" ]; then
     docker pull urielwo/final_project:latest
     docker images
     docker-compose up -d
+    sleep 100
     # load .env password // if IP change need to updated on the jenkins manchine
     export $(cat .env | xargs)
     # test 1

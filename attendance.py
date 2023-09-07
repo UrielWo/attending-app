@@ -4,13 +4,7 @@ import pandas as pd
 # csv_file = "/home/uriel/PythonExe/attendance_csv_files/participant-20220824102638.csv" # one file option
 
 
-def private_cases(df):  # Convert Hebrew names to English
-    df.loc[df['Name'] == 'אורן גדמו', 'Name'] = 'Oren Gedamu'
-    df.loc[df['Name'] == 'מירב חורש', 'Name'] = 'Meirav Horesh'
-    df.loc[df['Name'] == 'יוסי בנגייב', 'Name'] = 'Yossi Bengaev'
-    df.loc[df['Attendee_Email'] == 'estherwa@gmai.com', 'Attendee_Email'] = 'estherwa@hotmail.es'
-    df.loc[df['Attendee_Email'] == 'estherwa@gmail.com', 'Attendee_Email'] = 'estherwa@hotmail.es'
-    df.loc[df['Attendee_Email'] == 'estherwah9@gmail.com', 'Attendee_Email'] = 'estherwa@hotmail.es'
+
 
 def duration_Col(df):  # split Attendance Duration to use min as int for calculations
     df[['Duration', 'Time_unit']] = df['Attendance_Duration'].str.split(' ', expand=True) # i change for the database adding _ to column name
